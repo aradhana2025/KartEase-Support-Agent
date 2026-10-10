@@ -383,6 +383,20 @@ During later testing, Gemini returned a `429 RESOURCE_EXHAUSTED` error because t
 Consequently, the remaining end-to-end questions could not all be tested at that time.
 
 The questions marked `NOT VERIFIED` must be tested when generation requests are available. They must not be reported as passed without actual verification.
+### 8.5 Additional Agent and Order Tool Checks
+
+The following checks were completed during additional testing:
+
+| Test | Result | Notes |
+|---|---|---|
+| Agent startup | PASS | The application displayed the customer support banner and interactive prompt. |
+| Unrelated question | PASS | "Who is the CEO of Google?" returned the required fallback response without invoking Gemini generation. |
+| Valid order lookup | PASS | The `check_order` tool returned the details for `KE1002`, including customer, product, status, and expected date. |
+| Invalid order lookup | PASS | The `check_order` tool returned a friendly message for `KE9999`. |
+| Interactive exit | PASS | Entering `exit` displayed "KartEase: Goodbye!" and returned to PowerShell. |
+| Gemini-powered tool selection | NOT VERIFIED | Testing was blocked by a Gemini API `429 RESOURCE_EXHAUSTED` error. |
+
+These checks verify individual application behaviors. They do not establish that the complete agent successfully selects the correct tool for every assignment question.
 
 ## 9. Attempted Fix
 
